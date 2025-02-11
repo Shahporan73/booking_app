@@ -64,7 +64,7 @@ class HomeCardWidget extends StatelessWidget {
               ),
               Positioned(
                 bottom: 5,
-                right: 10,
+                right: 8,
                 child: Container(
                   padding: EdgeInsets.all(8),
                   decoration: BoxDecoration(

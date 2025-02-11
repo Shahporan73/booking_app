@@ -52,7 +52,7 @@ class ExploreScreen extends StatelessWidget {
 
             // Home Card
             SizedBox(
-              height: height / 3,
+              height: height / 3.5,
               width: double.infinity,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -65,7 +65,8 @@ class ExploreScreen extends StatelessWidget {
                         child: GestureDetector(
                           onTap: () {
                             print('Home Card Tapped');
-                            Get.to(() => HotelDetailsScreen());
+                            Get.to(() => HotelDetailsScreen(),
+                            transition: Transition.downToUp,);
                           },
                           child: HomeCardWidget(),
                         ),
@@ -101,7 +102,13 @@ class ExploreScreen extends StatelessWidget {
               physics: ScrollPhysics(),
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                return RecommandedHoleWidget();
+                return GestureDetector(
+                  onTap: (){
+                    Get.to(() => HotelDetailsScreen(),
+                    transition: Transition.downToUp,);
+                  },
+                  child: RecommandedHoleWidget(),
+                );
               },
             ),
 

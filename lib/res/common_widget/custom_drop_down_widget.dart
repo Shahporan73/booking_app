@@ -11,7 +11,14 @@ class CustomDropDownWidget extends StatelessWidget {
   final String hintText;
   final Decoration? decoration;
   final double? paddingHorizontal;
-
+  final bool? isExpanded;
+  final TextStyle? textStyle;
+  final Color? dropDownColor;
+  final TextStyle? hintStyle;
+  final Function()? onTap;
+  final Widget? iconWidget;
+  final double? width;
+  final double? height;
   CustomDropDownWidget({
     required this.selectedValue,
     required this.items,
@@ -19,6 +26,14 @@ class CustomDropDownWidget extends StatelessWidget {
     required this.hintText,
     this.decoration,
     this.paddingHorizontal,
+    this.isExpanded,
+    this.textStyle,
+    this.dropDownColor,
+    this.hintStyle,
+    this.onTap,
+    this.iconWidget,
+    this.width,
+    this.height,
   });
 
   @override
@@ -27,7 +42,8 @@ class CustomDropDownWidget extends StatelessWidget {
     final uniqueItems = items.toSet().toList();
 
     return Container(
-      height: MediaQuery.of(context).size.height * 0.06,
+      height: height ?? MediaQuery.of(context).size.height * 0.06,
+      width: width ?? double.infinity,
       padding: EdgeInsets.symmetric(horizontal: paddingHorizontal ?? 10),
       decoration: decoration ?? BoxDecoration(
         color: Colors.transparent,
@@ -36,7 +52,13 @@ class CustomDropDownWidget extends StatelessWidget {
       ),
       child: DropdownButton<String>(
         value: uniqueItems.contains(selectedValue) ? selectedValue : null, // Ensure the selected value is valid
-        hint: Text(hintText),
+        hint: Text(
+            hintText,
+          style: hintStyle ?? TextStyle(
+            fontSize: 14,
+            color: Colors.grey
+          ),
+        ),
         underline: SizedBox(),
         onChanged: onChanged,
         items: uniqueItems
@@ -46,16 +68,17 @@ class CustomDropDownWidget extends StatelessWidget {
             child: Text(value),
           );
         }).toList(),
-        isExpanded: true,
-        style: TextStyle(
+        isExpanded: isExpanded ?? true,
+        style: textStyle ?? TextStyle(
           color: Colors.black,
           fontSize: 14,
         ),
-        icon: Icon(
+        icon: iconWidget ?? Icon(
           Icons.arrow_drop_down,
           color: Colors.black,
         ),
-        dropdownColor: AppColors.whiteColor,
+        dropdownColor: dropDownColor ?? AppColors.whiteColor,
+        onTap: onTap,
       ),
     );
   }

@@ -36,6 +36,7 @@ class RoundTextField extends StatelessWidget {
   final bool isBorder;
   final double? hintFontSize;
   final double? fontSize;
+  final InputDecoration? decoration;
   const RoundTextField({
     super.key,
     required this.hint,
@@ -68,6 +69,7 @@ class RoundTextField extends StatelessWidget {
     this.isBorder = true,
     this.hintFontSize,
     this.fontSize,
+    this.decoration,
   });
 
   @override
@@ -77,7 +79,7 @@ class RoundTextField extends StatelessWidget {
       height: height ?? MediaQuery.of(context).size.height * 0.07,
       child: TextFormField(
         controller: controller,
-        decoration: InputDecoration(
+        decoration: decoration?? InputDecoration(
           filled: filled,
           fillColor: fillColor,
           focusedBorder: OutlineInputBorder(
